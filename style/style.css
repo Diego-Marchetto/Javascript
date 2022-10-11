@@ -5,20 +5,31 @@
 }
 
 body{
-    background-color: azure;
+    background-color:white;
 }
 
+/*NAVBAR*/
 header{
-    background-color: dimgray;
-    height: 60px;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    background-color: dimgray;
+    height: 60px;
+    width: 100%;
 }
 
 nav{
     display: flex;
     align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+nav .title{
+    font-size: 1.5em;
+    text-decoration: solid;
+    color: rgb(253, 126, 20);
+    cursor: pointer;
 }
 
 nav ul{
@@ -34,10 +45,35 @@ ul li a{
 }
 
 ul li a:hover{
-    color: aquamarine;
+    color: rgb(253, 126, 20);
     transition: 0.5s;
 }
 
+#carrito{
+    display: flex;
+    align-items: center;
+}
+
+#carrito a{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+#carrito img{
+    cursor: pointer;
+}
+
+#cant{
+    text-decoration: solid;
+    color: white;
+    width: 35px;
+    height: auto;
+    text-align: center;
+}
+/*NAVBAR*/
+
+/*CONTENEDOR CATALOGO*/
 .padre{
     width: 100%;
     height: 100%;
@@ -46,28 +82,114 @@ ul li a:hover{
 }
 
 #filter{
-    width: 300px;
-    height: 78vh;
-    background-color: azure;
+    text-align: center;
+    width: auto;
+    height: auto;
+    background-color: white;
     margin: 5px;
     border: black 2px solid;
+    border-radius: 5px;
 }
 
-#container{
-    display: flex;
+#filter p{
+    font-size: 1.3em;
+    margin: 10px;
+    cursor: pointer;
+}
+
+#filter h2{
+    margin-top: 20px;
+}
+
+#filter .delete{
+    margin-top: 20px;
+    font-size: 1.5em;
+}
+
+#filter p:hover{
+    color: rgb(253, 126, 20);
+    transition: 0.5s;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 30% 70%;
     background-color: dimgray;
     width: 80%;
-    height: 80vh;
+    height: auto;
     margin-top: 50px;
 }
 
-#item{
-    width: 250px;
-    height: 300px;
-    background-color: azure;
-    margin: 10px;
-    border: black 2px solid;
+#lista{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
+
+.item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: space-around;
+    width: 200px;
+    height: 250px;
+    background-color: white;
+    margin: 15px;
+    border: black 2px solid;
+    border-radius: 5px;
+}
+
+/*CONTENEDOR CATALOGO*/
+
+/*CARRITO*/
+.containerCarrito{
+    background-color: white;
+    width: 80vh;
+    height: auto;
+    margin-top: 50px;
+    border: 2px solid black;
+    border-right: 0px;
+}
+
+#listaCarrito{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+/*CARRITO*/
+
+/*BOTONES*/
+button{
+    border-radius: 5px;
+    background-color: rgb(253, 126, 20);
+    color: white;
+    width: 80%;
+    border: 1px;
+    padding: 7px;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: rgb(54, 40, 21);
+    transition: 0.2s;
+}
+
+.nostock{
+    border-radius: 5px;
+    background-color: gray;
+    color: white;
+    width: 80%;
+    border: 1px;
+    padding: 7px;
+}
+
+.nostock:hover{
+    background-color: gray;
+    transition: 0s;
+    cursor:default;
+}
+/*BOTONES*/
 
 footer{
     background-color: dimgray;
@@ -75,7 +197,7 @@ footer{
     height: 50px;
     text-align: center;
     bottom: 0;
-    position:fixed;
+    margin-top: 50px;
 }
 
 footer p{

@@ -11,21 +11,43 @@
 <body>
     <header>
         <nav>
-            <ul>
-                <li>
-                    <a href="">Tienda</a>
-                </li>
-            </ul>
+            <div class="title">DettoStore</div>
+            <div>
+                <ul>
+                    <li>
+                        <a href="">Tienda</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="carrito">
+                    <img src="./imgs/carrito.png" alt="">
+                    <p id="cant">0</p>
+            </div>
+
         </nav>
     </header>
     <div class="padre">
-        <div id="container">
-            <div id="filter"></div>
-            <div id="item"></div>
+        <div class="container">
+            <div id="filter">
+                <h2>Filtrar busqueda</h2>
+                <p id="filCPU">Procesadores</p>
+                <p id="filRAM">Memorias RAM</p>
+                <p id="filMOT">Motherboards</p>
+                <p id="filSSD">Discos Solidos</p>
+                <p id="filGPU">Placas de Video</p>
+                <p id="all" class="delete">Eliminar filtros</p>
+            </div>
+            <div id="lista"></div>
         </div>
+
+        <div class="containerCarrito">
+            <div id="listaCarrito"></div>
+        </div>
+
     </div>
 
-    <footer><p>Todos los derechos reservador - DIEGO</p></footer>
+    <footer><p>Todos los derechos reservados - DIEGO</p></footer>
 
     <script src="./js/script.js"></script>
 </body>
