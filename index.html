@@ -30,18 +30,20 @@
     <div class="padre">
         <div class="container">
             <div id="filter">
-                <h2>Filtrar busqueda</h2>
-                <p id="filCPU">Procesadores</p>
-                <p id="filRAM">Memorias RAM</p>
-                <p id="filMOT">Motherboards</p>
-                <p id="filSSD">Discos Solidos</p>
-                <p id="filGPU">Placas de Video</p>
-                <p id="all" class="delete">Eliminar filtros</p>
+                <h3>Filtro de Busqueda</h3>
+                <select id="menuFiltro" onchange="SelectFiltro();">
+                    <option id="filCPU" value="1">Procesadores</option>
+                    <option id="filRAM" value="2">Memorias RAM</option>
+                    <option id="filMOT" value="3">Motherboards</option>
+                    <option id="filSSD" value="4">Discos Solidos</option>
+                    <option id="filGPU" value="5">Placas de Video</option>
+                </select>
+                <button id="all">Borrar filtros</button>
+
             </div>
             <div id="lista"></div>
         </div>
-
-        <div class="containerCarrito">
+        <div id="containerCarrito" style="display: none">
             <div id="listaCarrito"></div>
         </div>
 

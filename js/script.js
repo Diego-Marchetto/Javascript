@@ -1,9 +1,6 @@
-//1-MOSTRAR MENU AL USUARIO DE LA TIENDA
-//2-ARMAR UNA LISTA DE PRODUCTOS, DECLARANDO VALOR Y STOCK DEL MISMO
-//3-SUMAR LO COMPRADO A UN CARRITO DE COMPRAS PARA LUEGO PODER MOSTRARLE AL USUARIO, RESTAR STOCK SEGUN LO QUE VA PIDIENDO EL USUARIO
-//4-CONFIRMAR COMPRA PREGUNTANDO METODO DE PAGO Y HACIENDO DESCUENTOS
+//1-DETTOSTORE - CARRITO DE COMPRAS
 
-function Producto(nombre, precio, stock, img, categoria, id){ //OBJETOS
+function Producto(nombre, precio, stock, img, categoria, id){
     this.nombre = nombre;
     this.precio = precio;
     this.stock = stock || 0;
@@ -20,7 +17,7 @@ function Producto(nombre, precio, stock, img, categoria, id){ //OBJETOS
     }
 }
 
-let productoA = new Producto("Ryzen 5 5600G", 5350, 2, "./imgs/cpu.jpg", "Procesadores", 1)//Genero objetos
+let productoA = new Producto("Ryzen 5 5600G", 5350, 2, "./imgs/cpu.jpg", "Procesadores", 1)
 let productoB = new Producto("Ryzen 5 5600X", 5350, 20, "./imgs/cpu.jpg", "Procesadores", 2)
 let productoC = new Producto("Ryzen 7 5700G", 5350, 20, "./imgs/cpu7.jpg", "Procesadores", 3)
 let productoD = new Producto("Ryzen 7 5700X ", 5350, 20, "./imgs/cpu7.jpg", "Procesadores", 4) 
@@ -45,48 +42,57 @@ let productoS = new Producto("PLACA DE VIDEO", 11700, 10, "./imgs/gpu.jpg", "Pla
 let productoT = new Producto("PLACA DE VIDEO", 11700, 10, "./imgs/gpu.jpg", "Placas de Video", 19)
 let productoU = new Producto("PLACA DE VIDEO", 11700, 10, "./imgs/gpu.jpg", "Placas de Video", 20)
 
-let listaProductos = [productoA, productoB, productoC, productoD, productoE, productoF, productoG, productoH, productoI, productoJ, productoK, productoM, productoN, productoO, productoP, productoQ, productoR, productoS, productoT, productoU] //Armar array con los productos
+let listaProductos = [productoF, productoC, productoB, productoE, productoD, productoA, productoK, productoM, productoN, productoO, productoJ, productoI, productoH, productoG, productoQ, productoS, productoR, productoT, productoU, productoP] //Armar array con los productos
 
 let listaProductosConStock = listaProductos.filter((prod) => prod.stock > 0) //Filtrar en un array los productos con stock
 
 let listaNombres = listaProductosConStock.map((prod) => prod.nombre) //Mapear el nombre de los productos con stock a un array nuevo
 
-let precioTotal = 0 //VALOR TOTAL DE LA COMPRA
-
-let descuento = 0.15 //Descuento transferencia bancaria
-
-
-
+//ELEMENTOS HTML
 let catalogo = document.getElementById("lista")
-let filtrarCpu = document.getElementById("filCPU")
-let filtrarRam = document.getElementById("filRAM")
-let filtrarSsd = document.getElementById("filSSD")
-let filtrarMother = document.getElementById("filMOT")
-let filtrarGpu = document.getElementById("filGPU")
-let all = document.getElementById("all")
-let sumarCantidad = document.getElementById("cant")
+let all = document.getElementById("all") //Borrar filtros
+
+let sumarCantidad = document.getElementById("cant") //Valor numerico del carrito
 let mostrarCarrito = document.getElementById("listaCarrito")
+
+let botonCarrito = document.getElementById("carrito") //Abrir y cerrar carrito
+let x = document.getElementById("containerCarrito")
+
+//EVENTOS
+botonCarrito.addEventListener("click", ()=> {abrirCarro()})
+all.addEventListener("click", ()=>{render(listaProductosConStock)})
+
+
+//FUNCIONES
+function SelectFiltro(){
+var combo = document.getElementById("menuFiltro");
+var selected = combo.options[combo.selectedIndex].text;
+render(listaProductos.filter((prod)=>prod.categoria == selected));
+}
+
+function abrirCarro(){
+    if((x.style.display == "none")&&(carrito.length > 0)){
+        x.style.display = "block"
+    }
+    else{
+        x.style.display = "none"
+    }   
+}
 
 function render(lista) {
     catalogo.innerHTML = ""
 
     for(const prod of lista){
-
         let card = document.createElement("div")
-
         card.className = "item"
-
         if(prod.stock > 0){
             card.innerHTML = `<img src="${prod.img}" alt="${prod.nombre}" alt=""><h2 class="titulo">${prod.nombre}</h2><p>Precio: $${prod.precio}</p><button id="${prod.id}">SUMAR AL CARRITO</button>`
         }
         else{
             card.innerHTML = `<img src="${prod.img}" alt="${prod.nombre}" alt=""><h2 class="titulo">${prod.nombre}</h2><p>Precio: $${prod.precio}</p><button id="${prod.id}" class="nostock">SIN STOCK</button>`
         }
-
         catalogo.append(card)
-
         const boton = document.getElementById(`${prod.id}`)
-        
         boton.addEventListener("click", ()=> agregarCarrito(prod.id, prod.stock))
     }
 }
@@ -95,35 +101,29 @@ render(listaProductosConStock)
 function renderCarrito(listaCarrito) {
     mostrarCarrito.innerHTML = ""
 
+    if(carrito.length < 1){
+        x.style.display = "none"
+    }
+
     for(const prod of listaCarrito){
 
         let carro = document.createElement("div")
-
         carro.className = "item"
-
         carro.innerHTML = `<img src="${prod.img}" alt="${prod.nombre}" alt=""><h2 class="titulo">${prod.nombre}</h2><p>Precio: $${prod.precio}</p><button id="borrar${prod.id}">ELIMINAR</button>`
-
         mostrarCarrito.append(carro)
 
         const botonBorrar = document.getElementById(`borrar${prod.id}`)
-        
         botonBorrar.addEventListener("click", ()=> borrarDelCarrito(prod.id))
     }
 }
 
-filtrarCpu.addEventListener("click", ()=>render(listaProductos.filter((prod)=>prod.categoria == filtrarCpu.textContent)))
-filtrarRam.addEventListener("click", ()=>render(listaProductos.filter((prod)=>prod.categoria == filtrarRam.textContent)))
-filtrarSsd.addEventListener("click", ()=>render(listaProductos.filter((prod)=>prod.categoria == filtrarSsd.textContent)))
-filtrarMother.addEventListener("click", ()=>render(listaProductos.filter((prod)=>prod.categoria == filtrarMother.textContent)))
-filtrarGpu.addEventListener("click", ()=>render(listaProductos.filter((prod)=>prod.categoria == filtrarGpu.textContent)))
-all.addEventListener("click", ()=>{render(listaProductosConStock)})
-
-
+//CARRITO
 let carrito = []
 let sumarCarrito = 0
 
 const agregarCarrito = (prodId, stock) => {
     const newItem = listaProductosConStock.find((prod) => prod.id === prodId)
+    
     if(stock > 0){
         carrito.push(newItem)
         let cantidad = 1
@@ -131,10 +131,10 @@ const agregarCarrito = (prodId, stock) => {
 
         sumarCarrito += 1
         sumarCantidad.textContent = sumarCarrito
-    
-        console.log(carrito)
+
         render(listaProductosConStock)
         renderCarrito(carrito)
+        guardarProducto(newItem)
     }
     else{
         console.log("No hay stock")
@@ -142,21 +142,60 @@ const agregarCarrito = (prodId, stock) => {
 }
 
 const borrarDelCarrito = (prodId) => {
+
     const item = carrito.find((prod) => prod.id === prodId)
     const indice = carrito.indexOf(item)
     carrito.splice(indice, 1)
-    item.sumarStock(1)
 
     sumarCarrito -= 1
     sumarCantidad.textContent = sumarCarrito
 
-    console.log(carrito)
     render(listaProductosConStock)
     renderCarrito(carrito)
+    borrarProducto(prodId)
 }
 
 
+//LocalStorage
 
+function guardarProducto(producto){
+    let productos
+    productos = obtenerProductos()
+    productos.push(producto)
+    localStorage.setItem("productos", JSON.stringify(productos))
+}
 
+function obtenerProductos(){
+
+    if(localStorage.getItem("productos") === null){
+        carrito = []
+    }
+    else{
+        carrito = JSON.parse(localStorage.getItem("productos"))
+    }
+    return carrito;
+}
+
+function borrarProducto(producto){
+    let productosLS;
+    productosLS = obtenerProductos();
+    productosLS.forEach(function(carrito, index){
+        if(carrito.id === producto){
+            productosLS.splice(index, 1)
+        }
+    })
+
+    localStorage.setItem("productos", JSON.stringify(productosLS))
+}
+
+function leerStorage(){
+    carrito = obtenerProductos()
+    let long = carrito.length
+    sumarCantidad.textContent = long
+    sumarCarrito = parseInt(sumarCantidad.textContent)
+}
+
+leerStorage()
+renderCarrito(carrito)
 
 
