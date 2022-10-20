@@ -131,6 +131,7 @@ select{
 #menuFiltro{
     height: 30px;
     width: 200px;
+    margin-bottom: 10px;
 }
 
 #menuFiltro:hover{
@@ -182,13 +183,23 @@ select{
     font-size: 0.7em;
 }
 
+#listaCarrito #totalPrice{
+    font-size: 1.2em;
+    margin-top: 5px;
+}
+
+.cantidad{
+    display: flex;
+}
+
 
 /*CONTENEDOR CATALOGO*/
 
 /*CARRITO*/
 #containerCarrito{
     width: 30%;
-    height: 93%;
+    min-height: 10%;
+    max-height: 80%;
     right: 0;
     margin-right: 10px;
     transition: all 0.5s linear;
@@ -311,5 +322,9 @@ footer p{
 
     #menuFiltro{
         width: 60%;
+    }
+    
+    #containerCarrito{
+        margin-right: 0px;
     }
 }
