@@ -39,21 +39,32 @@ let productoJ = new Producto("Mother Gigabyte GA-A320M-H AM4", 13100, 10, "./img
 let productoK = new Producto("Mother Asrock B550M Steel Legend AM4", 32030, 10, "./imgs/mother2.jpg", "Motherboards", 11, 0)
 let productoM = new Producto("Mother ASUS ROG X570 CROSSHAIR VIII AM4 DARK HERO", 125750, 10, "./imgs/mother3.jpg", "Motherboards", 12, 0)
 
-let productoN = new Producto("Disco Sólido SSD Gigabyte 240GB 500MB/s", 5660, 20, "./imgs/ssd.jpg", "Discos Solidos", 13, 0)
-let productoO = new Producto("Disco Solido SSD M.2 Gigabyte 500GB 5000MB/s NVMe", 20360, 20, "./imgs/ssd1.jpg", "Discos Solidos", 14, 0)
-let productoP = new Producto("Disco Solido SSD Team 256GB GX2 530MB/s", 4980, 20, "./imgs/ssd2.jpg", "Discos Solidos", 15, 0)
-let productoQ = new Producto("Disco Sólido SSD M.2 ADATA 256GB XPG 3500MB/s", 8050, 20, "./imgs/ssd3.jpg", "Discos Solidos", 16, 0)
+let productoN = new Producto("Disco Sólido SSD Gigabyte 240GB 500MB/s", 5660, 20, "./imgs/ssd.jpg", "Almacenamiento", 13, 0)
+let productoO = new Producto("Disco Solido SSD M.2 Gigabyte 500GB 5000MB/s NVMe", 20360, 20, "./imgs/ssd1.jpg", "Almacenamiento", 14, 0)
+let productoP = new Producto("Disco Solido SSD Team 256GB GX2 530MB/s", 4980, 20, "./imgs/ssd2.jpg", "Almacenamiento", 15, 0)
+let productoQ = new Producto("Disco Sólido SSD M.2 ADATA 256GB XPG 3500MB/s", 8050, 20, "./imgs/ssd3.jpg", "Almacenamiento", 16, 0)
 
 let productoR = new Producto("Placa de Video ASUS GeForce GTX 1660 TI 6GB GDDR6 OC", 92450, 10, "./imgs/gpu.jpg", "Placas de Video", 17, 0)
 let productoS = new Producto("Placa de Video ASUS GeForce RTX 3070 Ti 8GB GDDR6", 195000, 10, "./imgs/gpu1.jpg", "Placas de Video", 18, 0)
 let productoT = new Producto("Placa de Video MSI Radeon RX 6700 XT 12GB GDDR6 MECH 2X", 119000, 10, "./imgs/gpu2.jpg", "Placas de Video", 19, 0)
 let productoU = new Producto("Placa de Video XFX Radeon RX 6600 8GB GDDR6", 79500, 10, "./imgs/gpu3.jpg", "Placas de Video", 20, 0)
 
-let listaProductos = [productoS, productoR, productoT, productoU, productoP, productoK, productoM, productoN, productoO, productoJ, productoI, productoH, productoG, productoQ, productoF, productoC, productoB, productoE, productoD, productoA] //Armar array con los productos
+let productoV = new Producto("Gabinete Corsair ICUE 220T RGB Tempered Glass Black", 31150, 10, "./imgs/gab1.jpg", "Gabinetes", 21, 0)
+let productoW = new Producto("Gabinete Deepcool MATREXX 55 MESH ADD-RGB 4F", 26750, 10, "./imgs/gab2.jpg", "Gabinetes", 22, 0)
+let productoX = new Producto("Gabinete Cooler Master H500P Mesh ARGB", 45250, 10, "./imgs/gab3.jpg", "Gabinetes", 23, 0)
+let productoY = new Producto("Gabinete Lian Li O11 Dynamic XL ROG Certify White ARGB", 76700, 10, "./imgs/gab4.jpg", "Gabinetes", 24, 0)
 
-let listaProductosConStock = listaProductos.filter((prod) => prod.stock > 0) //Filtrar en un array los productos con stock
+let productoZ = new Producto("Fuente Gamemax 800W 80 Plus Bronze VP-800", 15410, 10, "./imgs/fnt1.jpg", "Fuentes de Alimentacion", 25, 0)
+let producto1 = new Producto("Fuente Aerocool Dorado 850W 80 Plus Gold ARGB", 21920, 10, "./imgs/fnt2.jpg", "Fuentes de Alimentacion", 26, 0)
 
-let listaNombres = listaProductosConStock.map((prod) => prod.nombre) //Mapear el nombre de los productos con stock a un array nuevo
+let producto2 = new Producto(`Monitor Gamer ASUS 27" GAMING VG27VQ 165Hz FHD`, 112750, 10, "./imgs/mon1.jpg", "Monitores", 27, 0)
+let producto3 = new Producto(`Monitor Gamer BENQ Zowie 24" XL2411K 144hz 1Ms`, 93550, 10, "./imgs/mon2.jpg", "Monitores", 28, 0)
+
+let listaProductos = [productoS, productoR, productoV, productoT, productoU, productoP, productoZ, productoW, productoK, producto2, productoM, productoN, productoX, productoO, productoJ, productoI, producto3, productoH, producto1, productoG, productoQ, productoF, productoY, productoC, productoB, productoE, productoD, productoA]
+
+let listaProductosConStock = listaProductos.filter((prod) => prod.stock > 0)
+
+let listaNombres = listaProductosConStock.map((prod) => prod.nombre)
 
 let carrito = []
 let sumarCarrito = 0
@@ -61,12 +72,12 @@ let totalPrice = 0
 
 //ELEMENTOS HTML
 let catalogo = document.getElementById("lista")
-let all = document.getElementById("all") //Borrar filtros
+let all = document.getElementById("all")
 let menuFiltro = document.getElementById("menuFiltro")
-let sumarCantidad = document.getElementById("cant") //Valor numerico del carrito
+let sumarCantidad = document.getElementById("cant")
 let mostrarCarrito = document.getElementById("listaCarrito")
 
-let botonCarrito = document.getElementById("carrito") //Abrir y cerrar carrito
+let botonCarrito = document.getElementById("carrito")
 let x = document.getElementById("containerCarrito")
 let price = document.getElementById("totalPrice")
 
@@ -75,35 +86,26 @@ botonCarrito.addEventListener("click", ()=> {abrirCarro()})
 menuFiltro.addEventListener("change", ()=> {selectFiltro()})
 
 //FUNCIONES
-function selectFiltro(){
-    if(menuFiltro.options[menuFiltro.selectedIndex].text == "Sin filtrar")
-    {
-        render(listaProductosConStock)
-    }else{
-        render(listaProductos.filter((prod)=>prod.categoria == (menuFiltro.options[menuFiltro.selectedIndex].text)))
-    }   
+
+function selectFiltro(){ //Filter
+    (menuFiltro.options[menuFiltro.selectedIndex].text == "Sin filtrar") ? render(listaProductosConStock) : render(listaProductos.filter((prod)=>prod.categoria == (menuFiltro.options[menuFiltro.selectedIndex].text)))
 }
 
-function abrirCarro(){
-    if(x.style.display == "none"){
-        x.style.display = "block"
-    }
-    else{
-        x.style.display = "none"
-    }   
+function abrirCarro(){ //Open cart
+    (x.style.display == "none") ? x.style.display = "block" : x.style.display = "none"
 }
 
-function render(lista) {
+function render(lista) { //Render products array
     catalogo.innerHTML = ""
 
     for(const prod of lista){
         let card = document.createElement("div")
         card.className = "item"
         if(prod.stock > 0){
-            card.innerHTML = `<img src="${prod.img}" alt="${prod.nombre}" alt=""><h2 class="titulo">${prod.nombre}</h2><p class="priceColor">$${prod.precio}</p><button id="${prod.id}">SUMAR AL CARRITO</button>`
+            card.innerHTML = `<img src="${prod.img}" alt="${prod.nombre}" alt=""><h2 class="titulo">${prod.nombre}</h2><p class="priceColor">${formatter.format(prod.precio)}</p><button id="${prod.id}">SUMAR AL CARRITO</button>`
         }
         else{
-            card.innerHTML = `<img src="${prod.img}" alt="${prod.nombre}" alt=""><h2 class="titulo">${prod.nombre}</h2><p class="priceColor">$${prod.precio}</p><button id="${prod.id}" class="nostock">SIN STOCK</button>`
+            card.innerHTML = `<img src="${prod.img}" alt="${prod.nombre}" alt=""><h2 class="titulo">${prod.nombre}</h2><p class="priceColor">${formatter.format(prod.precio)}</p><button id="${prod.id}" class="nostock">SIN STOCK</button>`
         }
         catalogo.append(card)
         const boton = document.getElementById(`${prod.id}`)
@@ -112,8 +114,7 @@ function render(lista) {
     }
 }
 
-
-function printItem(item){
+function printItem(item){ //Print item in the cart
 
     let carro = document.createElement("div")
     carro.className = "item"
@@ -121,7 +122,7 @@ function printItem(item){
 
     carro.innerHTML = `<img src="${item.img}" alt="${item.nombre}" alt="">
     <h2 class="titulo">${item.nombre}</h2>
-    <p class="priceColor">$${item.precio}</p>
+    <p class="priceColor">${formatter.format(item.precio)}</p>
     <div class="cantidad"><p>Cantidad:</p><p id="cant${item.id}">${item.cant}</p></div>
     <button id="borrar${item.id}">ELIMINAR</button>`
 
@@ -133,19 +134,19 @@ function printItem(item){
 
 }
 
-function noClonar(noClon){
+function noClonar(noClon){ //No clon in the cart
     const existe = document.getElementById(`cant${noClon.id}`)
     existe.innerHTML = `${noClon.cant}`
 }
 
-function deleteItem(item){
+function deleteItem(item){ //Delete item in the cart
     const deleteItem = document.getElementById(`item${item.id}`)
     mostrarCarrito.removeChild(deleteItem)
 }
 
 //CARRITO
 
-const agregarCarrito = (prodId, stock) => {
+const agregarCarrito = (prodId, stock) => { //Add item in the cart
     const newItem = listaProductosConStock.find((prod) => prod.id === prodId)
 
         if(stock > 0){
@@ -161,7 +162,7 @@ const agregarCarrito = (prodId, stock) => {
 
                 }
                 totalPrice += newItem.precio
-                price.innerHTML = `Precio total: $${totalPrice}`
+                price.innerHTML = `Precio total: ${formatter.format(totalPrice)}`
                 sumarCarrito += 1
                 sumarCantidad.textContent = sumarCarrito
                 guardarProducto(newItem)
@@ -170,7 +171,7 @@ const agregarCarrito = (prodId, stock) => {
             }
 }
 
-const agregarCarritoLS = (prodId, stock) => {
+const agregarCarritoLS = (prodId, stock) => { //Add item in the cart after charge LS
     const newItem = listaProductosConStock.find((prod) => prod.id === prodId)
     
     if(stock > 0){
@@ -192,7 +193,7 @@ const agregarCarritoLS = (prodId, stock) => {
 
 }
 
-const borrarDelCarrito = (prodId) => {
+const borrarDelCarrito = (prodId) => { //Delete item in the cart
 
     const item = carrito.find((prod) => prod.id === prodId)
     const indice = carrito.indexOf(item)
@@ -203,7 +204,7 @@ const borrarDelCarrito = (prodId) => {
 
     const resta = (item.precio * cantTotal)
     totalPrice -= resta
-    price.innerHTML = `Precio total: $${totalPrice}`
+    price.innerHTML = `Precio total: ${formatter.format(totalPrice)}`
 
     const cantidad = item.cant
     const producto = listaProductosConStock.find((prod) => prod.id === prodId)
@@ -220,9 +221,15 @@ const borrarDelCarrito = (prodId) => {
     selectFiltro()
 }
 
+const formatter = new Intl.NumberFormat('en-US', { //Money
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 0
+  })
+
 //LocalStorage
 
-function guardarProducto(producto){
+function guardarProducto(producto){ //Save product in LS
     let productos
     productos = obtenerProductos()
 
@@ -231,18 +238,13 @@ function guardarProducto(producto){
 
 }
 
-function obtenerProductos(){
+function obtenerProductos(){ //Get products in LS
     let carritoLS
-    if(localStorage.getItem("productos") === null){
-        carritoLS = []
-    }
-    else{
-        carritoLS = JSON.parse(localStorage.getItem("productos"))
-    }
+    (localStorage.getItem("productos") === null) ? carritoLS = [] : carritoLS = JSON.parse(localStorage.getItem("productos"))
     return carritoLS;
 }
 
-function borrarProducto(producto){
+function borrarProducto(producto){ //Delete products in LS
 
     let productosLS;
     productosLS = obtenerProductos();
@@ -256,7 +258,7 @@ function borrarProducto(producto){
     localStorage.setItem("productos", JSON.stringify(productosLS))
 }
 
-function leerStorage(){
+function leerStorage(){ //Get content in LS and print cart
     const printCarro = obtenerProductos()
     let long = printCarro.length
     sumarCantidad.textContent = long
@@ -273,11 +275,11 @@ function leerStorage(){
         }
         render(listaProductosConStock)
         totalPrice += prod.precio
-        price.innerHTML = `Precio total: $${totalPrice}`
+        price.innerHTML = `Precio total: ${formatter.format(totalPrice)}`
     }
 }
 
-price.innerHTML = `Precio total: $${totalPrice}`
+price.innerHTML = `Precio total: ${formatter.format(totalPrice)}`
 render(listaProductosConStock)
 leerStorage()
 

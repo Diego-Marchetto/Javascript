@@ -75,7 +75,21 @@ ul li a:hover{
     width: 100%;
     height: 100%;
     display: flex;
+    align-items: center;
+    flex-direction: column;
     justify-content: center;
+}
+
+.padre .banner{
+    width: 90%;
+    margin-top: 18px;
+    box-shadow: 0 2px 1px -1px rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 1px 3px 0 rgba(0,0,0,.12);
+}
+
+.padre .bannerDos{
+    width: 85%;
+    margin-top: 20px;
+    box-shadow: 0 2px 1px -1px rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 1px 3px 0 rgba(0,0,0,.12);
 }
 
 #filter{
@@ -113,7 +127,7 @@ select{
     background-color: #eee;
     width: 80%;
     height: auto;
-    margin-top: 50px;
+    margin-top: 18px;
     border-radius: 5px;
     box-shadow: 0 2px 1px -1px rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 1px 3px 0 rgba(0,0,0,.12);
 }
@@ -198,18 +212,25 @@ select{
     display: flex;
 }
 
+#totalPrice{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 
 /*CONTENEDOR CATALOGO*/
 
 /*CARRITO*/
 #containerCarrito{
+    text-align: center;
     width: 30%;
     min-height: 10%;
     max-height: 92%;
     right: 0;
+    top: 60px;
     margin-right: 10px;
-    transition: all 0.5s linear;
     border-radius: 4px;
+    transition: all 0.5s linear;
     background-color: darkgrey;
     position: absolute;
     overflow-y: scroll;
@@ -233,6 +254,17 @@ button{
     border: 1px;
     padding: 7px;
     cursor: pointer;
+}
+
+.endBuy{
+    border-radius: 5px;
+    background-color: red;
+    color: white;
+    width: 80%;
+    border: 1px;
+    padding: 7px;
+    cursor: pointer;
+    margin-bottom: 10px;
 }
 
 button:hover{
@@ -267,7 +299,7 @@ footer{
     height: 50px;
     text-align: center;
     bottom: 0;
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
 footer p{
@@ -307,10 +339,18 @@ footer p{
         width: 100%;
         height: auto;
         margin-top: 0px;
-        transition: all 0.5s linear;
+        margin-right: 0px;
         border: 0px;
         border-radius: 4px;
         background-color: darkgrey;
+    }
+
+    .padre .banner{
+        width: 98%;
+    }
+    
+    .padre .bannerDos{
+        width: 98%;
     }
 
 }
