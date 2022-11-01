@@ -1,0 +1,30 @@
+[
+    {
+        "nombre":"Combo Mother Asus A320M-K PRIME + CPU AMD Ryzen 5 1600 AF Zen+",
+        "img":"./imgs/combo1.jpg",
+        "precio":42400,
+        "id":50,
+        "categoria":"Combos de Actualizacion"
+    },
+    {
+        "nombre":"Combo Mother Asus A320M-K PRIME + CPU AMD Ryzen 5 1600 AF Zen+ + 2x RAM 8GB",
+        "img":"./imgs/combo2.jpg",
+        "precio":63700,
+        "id":51,
+        "categoria":"Combos de Actualizacion"
+    },
+    {
+        "nombre":"Combo Mother Asus A320M-K PRIME + CPU AMD Ryzen 5 1600 AF Zen+ RAM 8GB",
+        "img":"./imgs/combo3.jpg",
+        "precio":53050,
+        "id":52,
+        "categoria":"Combos de Actualizacion"
+    },
+    {
+        "nombre":"Combo ASUS ROG STRIX B550-A Gaming AM4 + CPU AMD Ryzen 5 5500 4.2GHz Turbo",
+        "img":"./imgs/combo4.jpg",
+        "precio":84300,
+        "id":53,
+        "categoria":"Combos de Actualizacion"
+    }
+]

@@ -88,12 +88,21 @@ menuFiltro.addEventListener("change", ()=> {selectFiltro()})
 //FUNCIONES
 
 function selectFiltro(){ //Filter
-    (menuFiltro.options[menuFiltro.selectedIndex].text == "Sin filtrar") ? render(listaProductosConStock) : render(listaProductos.filter((prod)=>prod.categoria == (menuFiltro.options[menuFiltro.selectedIndex].text)))
+    if (menuFiltro.options[menuFiltro.selectedIndex].text == "Sin filtrar"){
+        render(listaProductosConStock)
+    }else if(menuFiltro.options[menuFiltro.selectedIndex].text == "Combos de Actualizacion"){
+        fetch('combos.json')
+            .then(response => response.json())
+            .then(json => renderC(json))
+    }else{
+        render(listaProductos.filter((prod)=>prod.categoria == (menuFiltro.options[menuFiltro.selectedIndex].text)))
+    }
 }
 
 function abrirCarro(){ //Open cart
     (x.style.display == "none") ? x.style.display = "block" : x.style.display = "none"
 }
+
 
 function render(lista) { //Render products array
     catalogo.innerHTML = ""
@@ -111,6 +120,19 @@ function render(lista) { //Render products array
         const boton = document.getElementById(`${prod.id}`)
         boton.addEventListener("click", ()=> agregarCarrito(prod.id, prod.stock))
         
+    }
+}
+
+function renderC(lista) { //Render products Json
+    catalogo.innerHTML = ""
+
+    for(const prod of lista){
+        let card = document.createElement("div")
+        card.className = "item"
+
+        card.innerHTML = `<img src="${prod.img}" alt="${prod.nombre}" alt=""><h2 class="titulo">${prod.nombre}</h2><p class="priceColor">${formatter.format(prod.precio)}</p><button id="${prod.id}" class="nostock">SIN STOCK</button>`
+        catalogo.append(card)
+        const boton = document.getElementById(`${prod.id}`)
     }
 }
 
@@ -168,7 +190,14 @@ const agregarCarrito = (prodId, stock) => { //Add item in the cart
                 guardarProducto(newItem)
                 render(listaProductosConStock)
                 selectFiltro()
+                Swal.fire({
+                    title: 'Procesado',
+                    text: newItem.nombre + ' agregado al carrito!',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar'
+                  })
             }
+            
 }
 
 const agregarCarritoLS = (prodId, stock) => { //Add item in the cart after charge LS
@@ -282,5 +311,7 @@ function leerStorage(){ //Get content in LS and print cart
 price.innerHTML = `Precio total: ${formatter.format(totalPrice)}`
 render(listaProductosConStock)
 leerStorage()
+
+
 
 
