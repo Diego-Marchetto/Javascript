@@ -173,7 +173,11 @@ select{
     width: 97%;
 }
 
-.priceColor{
+#priceColor{
+    color: #4675b9;
+}
+
+.price{
     color: #4675b9;
 }
 

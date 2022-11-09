@@ -111,10 +111,10 @@ function render(lista) { //Render products array
         let card = document.createElement("div")
         card.className = "item"
         if(prod.stock > 0){
-            card.innerHTML = `<img src="${prod.img}" alt="${prod.nombre}" alt=""><h2 class="titulo">${prod.nombre}</h2><p class="priceColor">${formatter.format(prod.precio)}</p><button id="${prod.id}">SUMAR AL CARRITO</button>`
+            card.innerHTML = `<img src="${prod.img}" alt="${prod.nombre}" alt=""><h2 class="titulo">${prod.nombre}</h2><p id="priceColor">${formatter.format(prod.precio)}</p><button id="${prod.id}">SUMAR AL CARRITO</button>`
         }
         else{
-            card.innerHTML = `<img src="${prod.img}" alt="${prod.nombre}" alt=""><h2 class="titulo">${prod.nombre}</h2><p class="priceColor">${formatter.format(prod.precio)}</p><button id="${prod.id}" class="nostock">SIN STOCK</button>`
+            card.innerHTML = `<img src="${prod.img}" alt="${prod.nombre}" alt=""><h2 class="titulo">${prod.nombre}</h2><p id="priceColor">${formatter.format(prod.precio)}</p><button id="${prod.id}" class="nostock">SIN STOCK</button>`
         }
         catalogo.append(card)
         const boton = document.getElementById(`${prod.id}`)
@@ -130,7 +130,7 @@ function renderC(lista) { //Render products Json
         let card = document.createElement("div")
         card.className = "item"
 
-        card.innerHTML = `<img src="${prod.img}" alt="${prod.nombre}" alt=""><h2 class="titulo">${prod.nombre}</h2><p class="priceColor">${formatter.format(prod.precio)}</p><button id="${prod.id}" class="nostock">SIN STOCK</button>`
+        card.innerHTML = `<img src="${prod.img}" alt="${prod.nombre}" alt=""><h2 class="titulo">${prod.nombre}</h2><p id="priceColor">${formatter.format(prod.precio)}</p><button id="${prod.id}" class="nostock">SIN STOCK</button>`
         catalogo.append(card)
         const boton = document.getElementById(`${prod.id}`)
     }
@@ -144,7 +144,7 @@ function printItem(item){ //Print item in the cart
 
     carro.innerHTML = `<img src="${item.img}" alt="${item.nombre}" alt="">
     <h2 class="titulo">${item.nombre}</h2>
-    <p class="priceColor">${formatter.format(item.precio)}</p>
+    <p class="price" id="priceColor${item.id}">${formatter.format(item.precio)}</p>
     <div class="cantidad"><p>Cantidad:</p><p id="cant${item.id}">${item.cant}</p></div>
     <button id="borrar${item.id}">ELIMINAR</button>`
 
@@ -158,7 +158,9 @@ function printItem(item){ //Print item in the cart
 
 function noClonar(noClon){ //No clon in the cart
     const existe = document.getElementById(`cant${noClon.id}`)
+    const addPrice = document.getElementById(`priceColor${noClon.id}`)
     existe.innerHTML = `${noClon.cant}`
+    addPrice.innerHTML = `${formatter.format(noClon.cant * noClon.precio)}`
 }
 
 function deleteItem(item){ //Delete item in the cart
@@ -235,7 +237,6 @@ const borrarDelCarrito = (prodId) => { //Delete item in the cart
     totalPrice -= resta
     price.innerHTML = `Precio total: ${formatter.format(totalPrice)}`
 
-    const cantidad = item.cant
     const producto = listaProductosConStock.find((prod) => prod.id === prodId)
 
     producto.restarCompra(cantTotal)
